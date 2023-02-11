@@ -1,7 +1,5 @@
 package fr.formiko.setmaximized;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -18,19 +16,19 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 public class Main extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private Stage stage;
+	private Label label;
 	private Viewport viewport;
 
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
 		int width = Gdx.graphics.getWidth();
-		int heigth = Gdx.graphics.getHeight();
-		viewport = new FitViewport(width, heigth, new OrthographicCamera());
+		int height = Gdx.graphics.getHeight();
+		viewport = new FitViewport(width, height, new OrthographicCamera());
 		stage = new Stage(viewport, batch);
 
 		LabelStyle labelStyle = new LabelStyle(new BitmapFont(), Color.WHITE);
-		Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-		Label label = new Label("I'm a " + width + " " + heigth + " window on a " + size.getWidth() + " " + size.getHeight() + " screen.",
+		label = new Label("Initial label state; won't be shown.",
 				labelStyle);
 		stage.addActor(label);
 	}
@@ -38,7 +36,14 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void render() {
 		ScreenUtils.clear(0, 0, 0, 1);
+		label.setText("I'm a " + Gdx.graphics.getWidth() + " " + Gdx.graphics.getHeight() + " window on a "
+				+ Gdx.graphics.getDisplayMode().width + " " + Gdx.graphics.getDisplayMode().height + " screen.");
 		stage.draw();
+	}
+
+	@Override
+	public void resize(int width, int height) {
+		viewport.update(width, height);
 	}
 
 	@Override
