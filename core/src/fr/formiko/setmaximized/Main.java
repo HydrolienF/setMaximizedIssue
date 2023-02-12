@@ -26,14 +26,14 @@ public class Main extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
 		stage = new Stage(viewport, batch);
-		log("Create");
+		log("Create ApplicationAdapter");
 	}
 
 	@Override
 	public void render() {
 		// if (label == null) { //This should be enoth, but there is some call to render with default window size.
 		if (label == null && Gdx.graphics.getWidth() != 640) { // by lasy
-			log("Create by lazy");
+			log("Create Label by lazy");
 			LabelStyle labelStyle = new LabelStyle(new BitmapFont(), Color.WHITE);
 			label = new Label("Initial label state; won't be shown.", labelStyle);
 			stage.addActor(label);
