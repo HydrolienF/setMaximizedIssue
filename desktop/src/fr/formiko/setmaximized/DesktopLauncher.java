@@ -10,6 +10,8 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setTitle("setMaximized Issue");
 		config.setMaximized(true);
+		// If I replace setMaximized by the next line, Text have the rigth size.
+		// config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
 		new Lwjgl3Application(new Main(), config);
 	}
 }
